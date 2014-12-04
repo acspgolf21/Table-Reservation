@@ -1,10 +1,13 @@
 from Tkinter import *
+
 class Check_in(object):
     root = Tk()
-    box = Entry(root, width = 30)
-    root1 = Tk()
+    root.title("Table-Reservation")
+    #root.resizable(50,100)
+    box = Entry(root, width = 50)
     price = []
-    count = 0
+    count = 150
+    
     def __init__(self):
         price = []
         head = Label(self.root, text="Welcome to 10 Tables Restaurant")
@@ -18,28 +21,28 @@ class Check_in(object):
         self.root.mainloop()
 
     def monitor(self):
-        if self.count >= 10:
+        if self.count >= 450:
             print 'Table are full reserved now, please checking again in 10 minutes'
         else:
             list1 = ['Fried chicken $6', 'Rice $1', 'Noodle $8', 'Salad $5']
             self.name = self.box.get()
-            head1 = Label(self.root1, text=self.name)
-            head1.pack()
+            head1 = Label(self.root, text=self.name)
+            head1.place(x=50, y=self.count)
     ##        self.b = Button(self.root1, text="Order", width=10\
     ##                        , command=self.order_food)
     ##        self.b.pack()
-            self.spindle = StringVar(self.root1)
+            self.spindle = StringVar(self.root)
             self.spindle.set(list1[0]) #default value
-            s = OptionMenu(self.root1, self.spindle, *list1)
-            s.pack()
+            s = OptionMenu(self.root, self.spindle, *list1)
+            s.place(x=150, y=self.count)
 
-            button = Button(self.root1, text="Submit", command=self.submit)
-            button.pack()
+            button = Button(self.root, text="Submit", command=self.submit)
+            button.place(x=300, y=self.count)
 
-            bill_button = Button(self.root1, text="Check Bill", command=self.check_bill)
-            bill_button.pack()
+            bill_button = Button(self.root, text="Check Bill", command=self.check_bill)
+            bill_button.place(x=600, y=self.count)
 
-            self.count += 1
+            self.count += 30
             print self.name
 
     def submit(self):
