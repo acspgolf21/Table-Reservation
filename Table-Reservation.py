@@ -11,11 +11,10 @@ class Check_in(object):
     bg_pic = Label(root, image=bg_photo)
     bg_pic.pack()
     #photo
-##    logo_image = Image.open("red.bmp")
-##    logo_image = logo_image.resize((self.screen_width, self.screen_height), Image.ANTIALIAS)
-##    logo_photo =  ImageTk.PhotoImage(logo_image)
-##    logo_pic = Label(root, image=logo_photo)
-##    logo_pic.place(x=280, y=60)
+    logo_image = Image.open("logo6.jpg")
+    logo_photo =  ImageTk.PhotoImage(logo_image)
+    logo_pic = Label(root, image=logo_photo)
+    logo_pic.place(x=319, y=75)
     box = Entry(root, width = 50, bg = '#FFFFC2')
     listm = []
     count = 300
@@ -29,12 +28,12 @@ class Check_in(object):
         about.place(x=0, y=0)
         head = Label(self.root, text="Welcome to 5 Tables Restaurant", bg='#9C000F', fg='white')
         head.place(x=320, y=40)
-        head1 = Label(self.root, text="Enter your name here", bg='#9C000F')
-        head1.place(x=340, y=70)
-        self.box.place(x=250, y=100)
+        head1 = Label(self.root, text="Enter your name here", bg='#9C000F', fg='white')
+        head1.place(x=340, y=180)
+        self.box.place(x=250, y=210)
         self.b = Button(self.root, text="Reserve", width=10\
                         , command=self.monitor, bg = '#FDD017')
-        self.b.place(x=360, y=140)
+        self.b.place(x=360, y=240)
         self.root.mainloop()
 
     def monitor(self):
