@@ -2,7 +2,10 @@ from Tkinter import *
 from PIL import Image, ImageTk
 
 class Check_in(object):
-    '''This Class is use to keep all funtion for look easy'''
+    '''This Class is use to keep all funtion for look easy
+        This program is use to pre-reserve table in restaurant for easy
+        and comfortable, now we can reserve about 5 tables. But in future
+        we will develop this program for more table and more function. Thank you'''
     #main window
     root = Tk()
     root.title("Table-Reservation")
@@ -110,36 +113,36 @@ class Check_in(object):
         '''This function is use to command to save list of menu that customer ordered to this restaurant'''
         print self.spindle.get()
         ##add price to data##
-        if self.spindle.get() != 'Pre-Order':
-            if self.count == 340:
+        if self.spindle.get() != 'Pre-Order': #this loop is use to find and keep data in each customer
+            if self.count == 340: #add data to data1 and total1 for table1
                 self.data1.append(self.spindle.get())
                 self.total1.append(int(self.spindle.get()[-1]))
                 if self.spindle.get() not in self.order_amount1:
                     self.order_amount1[self.spindle.get()] = 1
                 else:
                     self.order_amount1[self.spindle.get()] += 1
-            elif self.count == 380:
+            elif self.count == 380: #add data to data1 and total1 for table2
                 self.data2.append(self.spindle.get())
                 self.total2.append(int(self.spindle.get()[-1]))
                 if self.spindle.get() not in self.order_amount2:
                     self.order_amount2[self.spindle.get()] = 1
                 else:
                     self.order_amount2[self.spindle.get()] += 1
-            elif self.count == 420:
+            elif self.count == 420: #add data to data1 and total1 for table3
                 self.data3.append(self.spindle.get())
                 self.total3.append(int(self.spindle.get()[-1]))
                 if self.spindle.get() not in self.order_amount3:
                     self.order_amount3[self.spindle.get()] = 1
                 else:
                     self.order_amount3[self.spindle.get()] += 1
-            elif self.count == 460:
+            elif self.count == 460: #add data to data1 and total1 for table4
                 self.data4.append(self.spindle.get())
                 self.total4.append(int(self.spindle.get()[-1]))
                 if self.spindle.get() not in self.order_amount4:
                     self.order_amount4[self.spindle.get()] = 1
                 else:
                     self.order_amount4[self.spindle.get()] += 1
-            elif self.count == 500:
+            elif self.count == 500: #add data to data1 and total1 for table5
                 self.data5.append(self.spindle.get())
                 self.total5.append(int(self.spindle.get()[-1]))
                 if self.spindle.get() not in self.order_amount5:
@@ -149,30 +152,34 @@ class Check_in(object):
 
     def cancel(self):
         '''This function is use to cancel things that customer change there mind'''
-        print self.spindle.get()
         if self.count == 340:
-            self.order_amount1[self.spindle.get()] -= 1
-            if self.order_amount1[self.spindle.get()] == 0:
+            if self.order_amount1[self.spindle.get()] > 0:
+                self.order_amount1[self.spindle.get()] -= 1
+            if self.order_amount1[self.spindle.get()] <= 0:
                 self.data1.remove(self.spindle.get())
             self.total1.remove(int(self.spindle.get()[-1])) ##remove price in total1
         elif self.count == 380:
-            self.order_amount2[self.spindle.get()] -= 1
-            if self.order_amount2[self.spindle.get()] < 0:
+            if self.order_amount2[self.spindle.get()] >= 0:
+                self.order_amount2[self.spindle.get()] -= 1
+            if self.order_amount2[self.spindle.get()] <= 0:
                 self.data2.remove(self.spindle.get())
                 self.total2.remove(int(self.spindle.get()[-1]))
-            self.total1.remove(int(self.spindle.get()[-1])) ##remove price in total2
+            self.total2.remove(int(self.spindle.get()[-1])) ##remove price in total2
         elif self.count == 420:
-            self.order_amount3[self.spindle.get()] -= 1
+            if self.order_amount3[self.spindle.get()] >= 0:
+                self.order_amount3[self.spindle.get()] -= 1
             if self.order_amount3[self.spindle.get()] <= 0:
                 self.data3.remove(self.spindle.get())
             self.total3.remove(int(self.spindle.get()[-1])) ##remove price in total3
         elif self.count == 460:
-            self.order_amount4[self.spindle.get()] -= 1
+            if self.order_amount4[self.spindle.get()] >= 0:
+                self.order_amount4[self.spindle.get()] -= 1
             if self.order_amount4[self.spindle.get()] <= 0:
                 self.data4.remove(self.spindle.get())
             self.total4.remove(int(self.spindle.get()[-1])) ##remove price in total4
         elif self.count == 500:
-            self.order_amount5[self.spindle.get()] -= 1
+            if self.order_amount5[self.spindle.get()] >= 0:
+                self.order_amount5[self.spindle.get()] -= 1
             if self.order_amount5[self.spindle.get()] <= 0:
                 self.data5.remove(self.spindle.get())
             self.total5.remove(int(self.spindle.get()[-1])) ##remove price in total5
@@ -181,7 +188,7 @@ class Check_in(object):
     def menu_list1(self):
         '''This function is use to save list of menu that customer ordered'''
         line = 0
-        rootm = Tk()
+        rootm = Tk() #rootm is window of menu list
         rootm.resizable(width=FALSE, height=FALSE)
         Label(rootm, text='Amount').place(x=230, y=line)
         self.data1 = list(set(self.data1))
@@ -240,6 +247,7 @@ class Check_in(object):
         self.okbutton_menu_list(rootm, line)
 
     def okbutton_menu_list(self, rootm, line):
+        '''This function is use to build ok button that use in many function above'''
         rootm.geometry(str(300)+'x'+str(line+60))
         exits = Button(rootm, text='OK', command = rootm.destroy, bg = '#FDD017')
         exits.place(x=140, y=line+30)
@@ -247,7 +255,7 @@ class Check_in(object):
     ####################################apart all button check bill for 5 customers####################################
     def check_bill1(self):
         '''Keep database of Table1 and ready to calculate all the time'''
-        rootb = Tk()
+        rootb = Tk() #rootb is window of check bill
         rootb.resizable(width=FALSE, height=FALSE)
         line = 0
         Label(rootb, text='Amount').place(x=230, y=line)
@@ -258,9 +266,9 @@ class Check_in(object):
             Label(rootb, text=self.order_amount1[i]).place(x=250, y=line)
         Label(rootb, text='Price   =   $' + str(sum(self.total1))).place(x=200, y=line+30)
         self.okbutton_check_bill(rootb, line)
-        a = Label(self.root, text='                '*100, bg='#9C000F')
+        a = Label(self.root, text='                '*100, bg='#9C000F') ##use to replace customer who is already check bill
         a.place(y=300)
-        a = Label(self.root, text='                '*100, bg='#9C000F')
+        a = Label(self.root, text='                '*100, bg='#9C000F') ##use to replace customer who is already check bill
         a.place(y=310)
         self.listm.remove(300)
         self.count -= 40
@@ -367,12 +375,15 @@ class Check_in(object):
         print self.listm
 
     def okbutton_check_bill(self, rootb, line):
+        '''This function is use to build ok button that use in many function above'''
         rootb.geometry(str(300)+'x'+str(line+90))
         exits = Button(rootb, text='OK', command = rootb.destroy, bg = '#FDD017')
         exits.place(x=140, y=line+60)
 
     def detail(self):
-        rootd = Tk()
+        '''This function is use to explain about this program in short paragraph'''
+        rootd = Tk() #rootd is window of detail about this program
+        rootd.resizable(width=FALSE, height=FALSE)
         scrollb = Scrollbar(rootd)
         texture = Text(rootd, height=4, width=57)
         scrollb.pack(side=RIGHT, fill=Y)
