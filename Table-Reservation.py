@@ -159,26 +159,26 @@ class Check_in(object):
                 self.data1.remove(self.spindle.get())
             self.total1.remove(int(self.spindle.get()[-1])) ##remove price in total1
         elif self.count == 380:
-            if self.order_amount2[self.spindle.get()] >= 0:
+            if self.order_amount2[self.spindle.get()] > 0:
                 self.order_amount2[self.spindle.get()] -= 1
             if self.order_amount2[self.spindle.get()] <= 0:
                 self.data2.remove(self.spindle.get())
                 self.total2.remove(int(self.spindle.get()[-1]))
             self.total2.remove(int(self.spindle.get()[-1])) ##remove price in total2
         elif self.count == 420:
-            if self.order_amount3[self.spindle.get()] >= 0:
+            if self.order_amount3[self.spindle.get()] > 0:
                 self.order_amount3[self.spindle.get()] -= 1
             if self.order_amount3[self.spindle.get()] <= 0:
                 self.data3.remove(self.spindle.get())
             self.total3.remove(int(self.spindle.get()[-1])) ##remove price in total3
         elif self.count == 460:
-            if self.order_amount4[self.spindle.get()] >= 0:
+            if self.order_amount4[self.spindle.get()] > 0:
                 self.order_amount4[self.spindle.get()] -= 1
             if self.order_amount4[self.spindle.get()] <= 0:
                 self.data4.remove(self.spindle.get())
             self.total4.remove(int(self.spindle.get()[-1])) ##remove price in total4
         elif self.count == 500:
-            if self.order_amount5[self.spindle.get()] >= 0:
+            if self.order_amount5[self.spindle.get()] > 0:
                 self.order_amount5[self.spindle.get()] -= 1
             if self.order_amount5[self.spindle.get()] <= 0:
                 self.data5.remove(self.spindle.get())
@@ -396,7 +396,9 @@ This program is help you that you haven't wait for food anymore \
 if you pre-order to there restaurant, all foods that will come \
 to your table in 5 minutes because we had cooked for you and boil \
 all the time. When you ate already you can click check bill button. \
-This program will calculate all price for you to pay"""
+This program will calculate all price for you to pay. \
+Attention!!! : Customer can submit or cancel menu until next customer \
+come to submit over you."""
         texture.insert(END, quote)
         
         
