@@ -9,7 +9,7 @@ class Check_in(object):
     #main window
     root = Tk()
     root.title("Table-Reservation")
-    root.geometry('800x700')
+    root.geometry('800x700+230+40')
     root.resizable(width=FALSE, height=FALSE)
     #background
     bg_image = Image.open("red.bmp")
@@ -28,8 +28,6 @@ class Check_in(object):
     data1, data2, data3, data4, data5 = [], [], [], [], [] #database of meny that customer ordered
     total1, total2, total3, total4, total5 = [], [], [], [], [] #database of price in check bill function
     order_amount1, order_amount2, order_amount3, order_amount4, order_amount5 = {}, {}, {}, {}, {}
-    data = [[], [], [], [],[]]
-    total = [[], [], [], [], []]
     
     def __init__(self):
         price = []
@@ -106,12 +104,10 @@ class Check_in(object):
                         menu_list.place(x=550, y=self.count)
 
                     self.count += 40
-                    print self.name
                     break
 
     def submit(self):
         '''This function is use to command to save list of menu that customer ordered to this restaurant'''
-        print self.spindle.get()
         ##add price to data##
         if self.spindle.get() != 'Pre-Order': #this loop is use to find and keep data in each customer
             if self.count == 340: #add data to data1 and total1 for table1
@@ -272,11 +268,8 @@ class Check_in(object):
         a.place(y=310)
         self.listm.remove(300)
         self.count -= 40
-        print self.total1
         self.data1, self.total1 = [], []
         self.order_amount1 = dict()
-        print sum(self.total1)
-        print self.listm
 
     def check_bill2(self):
         '''Keep database of Table2 and ready to calculate all the time'''
@@ -299,9 +292,6 @@ class Check_in(object):
         self.count -= 40
         self.data2, self.total2 = [], []
         self.order_amount2 = dict()
-        print sum(self.total2)
-        print self.listm
-
     def check_bill3(self):
         '''Keep database of Table3 and ready to calculate all the time'''
         rootb = Tk()
@@ -323,8 +313,6 @@ class Check_in(object):
         self.count -= 40
         self.data3, self.total3 = [], []
         self.order_amount3 = dict()
-        print sum(self.total3)
-        print self.listm
 
     def check_bill4(self):
         '''Keep database of Table4 and ready to calculate all the time'''
@@ -347,8 +335,6 @@ class Check_in(object):
         self.count -= 40
         self.data4, self.total4 = [], []
         self.order_amount4 = dict()
-        print sum(self.total4)
-        print self.listm
 
     def check_bill5(self):
         '''Keep database of Table4 and ready to calculate all the time'''
@@ -371,8 +357,6 @@ class Check_in(object):
         self.count -= 40
         self.data5, self.total5 = [], []
         self.order_amount5 = dict()
-        print sum(self.total5)
-        print self.listm
 
     def okbutton_check_bill(self, rootb, line):
         '''This function is use to build ok button that use in many function above'''
